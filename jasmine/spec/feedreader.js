@@ -1,13 +1,3 @@
-/* feedreader.js
- *
- * This is the spec file that Jasmine will read and contains
- * all of the tests that will be run against your application.
- */
-
-/* We're placing all of our tests within the $() function,
- * since some of these tests may require DOM elements. We want
- * to ensure they don't run until the DOM is ready.
- */
 $(function() {
   /* This is our first test suite - a test suite just contains
   * a related set of tests. This suite is all about the RSS
@@ -31,11 +21,10 @@ $(function() {
      * and that the URL is not empty.
      */
 
-    it('url defined', function() {
-      for(let feed of allFeeds) {
-        // console.log(feed);
-        expect(feed.url).toBeDefined();
-        expect(feed.url.length).not.toBe(0);
+    it('url defined and not empty', function() {
+      for(var i = 0; i < allFeeds.length; i++) {
+        expect(allFeeds[i].url).toBeDefined();
+        expect(allFeeds[i].url.length).not.toBe(0);
        }
      });
 
@@ -43,13 +32,12 @@ $(function() {
      * in the allFeeds object and ensures it has a name defined
      * and that the name is not empty.
      */
-    it('name defined', function() {
-      for(let feed of allFeeds) {
-        expect(feed.name).toBeDefined();
-        expect(feed.name.length).not.toBe(0);
+    it('name defined and not empty', function() {
+      for(var i = 0; i < allFeeds.length; i++) {
+        expect(allFeeds[i].name).toBeDefined();
+        expect(allFeeds[i].name.length).not.toBe(0);
       }
     });
-
   });
 
 
@@ -93,15 +81,36 @@ $(function() {
     });
 
     it('loadFeed called and worked', function() {
-      const feed = document.querySelector('.feed');
-      expect(feed.children.length > 0).toBe(true);
+      const feed = $('.feed .entry').length;
+      expect(feed > 0).toBe(true);
     });
   });
 
   /* TODO: Write a new test suite named "New Feed Selection" */
+  describe('New Feed Selection', function() {
+    /* TODO: Write a test that ensures when a new feed is loaded
+     * by the loadFeed function that the content actually changes.
+     * Remember, loadFeed() is asynchronous.
+     */
+    let initialFeed;
+    let newFeed;
 
-      /* TODO: Write a test that ensures when a new feed is loaded
-       * by the loadFeed function that the content actually changes.
-       * Remember, loadFeed() is asynchronous.
-       */
+    beforeEach(function(done) {
+      loadFeed(0, function() {
+        initialFeed = $('.header-title').html();
+        loadFeed(1, function() {
+          newFeed = $('.header-title').html();
+          done();
+        });
+      });
+    });
+
+    /* Write a test that ensures when a new feed is loaded
+    * by the loadFeed function that the content actually changes.
+    * Remember, loadFeed() is asynchronous.
+    */
+    it('content changed', function() {
+    expect(newFeed).not.toBe(initialFeed);
+    });
+ });
 }());
