@@ -9,7 +9,7 @@ $(function() {
       expect(allFeeds.length).not.toBe(0);
     });
 
-    // Loop through each feedin the allFeeds object
+    // Loop through each feed in the allFeeds object
     //and ensure it has a URL defined and that the URL is not empty.
     it('url defined and not empty', function() {
       for(var i = 0; i < allFeeds.length; i++) {
@@ -30,7 +30,7 @@ $(function() {
 
   describe('The menu', function() {
 
-    //Ensures the menu element is hidden by default.
+    //Ensure the menu element is hidden by default.
     it('menu is hidden', function() {
       const body = document.querySelector('body');
       expect(body.classList.contains('menu-hidden')).toBe(true);
