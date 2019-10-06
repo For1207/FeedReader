@@ -12,19 +12,19 @@ $(function() {
     // Loop through each feed in the allFeeds object
     //and ensure it has a URL defined and that the URL is not empty.
     it('url defined and not empty', function() {
-      for(var i = 0; i < allFeeds.length; i++) {
+      for(let i = 0; i < allFeeds.length; i++) {
         expect(allFeeds[i].url).toBeDefined();
         expect(allFeeds[i].url.length).not.toBe(0);
-       }
-     });
+      };
+    });
 
     // Loop through each feed in the allFeeds object and ensure
     // it has a name defined and that the name is not empty.
     it('name defined and not empty', function() {
-      for(var i = 0; i < allFeeds.length; i++) {
+      for(let i = 0; i < allFeeds.length; i++) {
         expect(allFeeds[i].name).toBeDefined();
         expect(allFeeds[i].name.length).not.toBe(0);
-      }
+      };
     });
   });
 
@@ -37,14 +37,14 @@ $(function() {
     });
 
     //Ensure the menu changes visibility when the menu icon is clicked.
-      it('menu on/off', function() {
-        const body = document.querySelector('body');
-        const menu = document.querySelector('.menu-icon-link');
-        menu.click();
-        expect(body.classList.contains('menu-hidden')).toBe(false);
-        menu.click();
-        expect(body.classList.contains('menu-hidden')).toBe(true);
-      });
+    it('menu on/off', function() {
+      const body = document.querySelector('body');
+      const menu = document.querySelector('.menu-icon-link');
+      menu.click();
+      expect(body.classList.contains('menu-hidden')).toBe(false);
+      menu.click();
+      expect(body.classList.contains('menu-hidden')).toBe(true);
+    });
   });
 
   describe('Initial Entries', function() {
