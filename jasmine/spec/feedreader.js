@@ -68,9 +68,9 @@ $(function() {
 
     beforeEach(function(done) {
       loadFeed(0, function() {
-        firstFeed = $('.header-title').html();
+        firstFeed = $('.feed').html();
         loadFeed(1, function() {
-          nextFeed = $('.header-title').html();
+          nextFeed = $('.feed').html();
           done();
         });
       });
